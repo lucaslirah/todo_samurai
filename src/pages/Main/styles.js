@@ -15,7 +15,7 @@ export const Container = styled.div`
     font-size: 64px;
     font-weight: 100;
     text-align: center;
-    }
+  }
 
   .main{
     background-color: #fff;
