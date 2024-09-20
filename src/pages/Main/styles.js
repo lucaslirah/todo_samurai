@@ -47,6 +47,10 @@ export const Container = styled.div`
     transition: color 0.3s;
     padding: 15px 15px 17px 15px;
   }
+  .todo.checked{
+    text-decoration: line-through;
+    color: #b2bec3;
+  }
 
   .remove {
     background-color: transparent;

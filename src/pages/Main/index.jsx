@@ -8,17 +8,24 @@ export default function Main() {
   const ENTER_KEY = 13;
   const ESCAPE_KEY = 27;
 
-  const initialTodos = [
-    {id: 1, title: "estudar programação", checked: false},
-    {id: 2, title: "estudar violão", checked: true}
-  ]
-
-  const [ todos] = useState(initialTodos);
+  const [ todos, setTodos ] = useState([]);
 
   const erase = () => {
     setValue("");
   }
   const submit = () => {
+    // colocar os valores insertados do input em setTodos como uma nova tarefa
+    const newTodo = {
+      id: Date.now(),
+      title: value,
+      checked: false
+    }
+
+    setTodos([
+      newTodo,
+     ...todos
+    ]);
+
     erase();
   }
   const onChange = (e) => {
@@ -30,6 +37,12 @@ export default function Main() {
     } else if(e.which === ESCAPE_KEY){
       erase();
     }
+  }
+  const todoToggleCheck = (todo) => {
+    // alterar o estado checked da tarefa com uso do operador !
+    setTodos(todos.map((t) => (
+      t.id === todo.id? {...t, checked:!t.checked} : t
+    )));
   }
 
   return (
@@ -50,7 +63,16 @@ export default function Main() {
             {
               todos.map((todo) => (
                 <li key={todo.id.toString()}>
-                  <span className="todo">{todo.title}</span>
+                  <span
+                    className={
+                    // `todo ${todo.checked? "checked" : ""}`
+                      ['todo', todo.checked ? 'checked' : ''].join(' ')
+                    }
+                    onClick={() => todoToggleCheck(todo)}
+                    onKeyDown={() => todoToggleCheck(todo)}
+                    role="button"
+                    tabIndex={0}
+                  >{todo.title}</span>
                   <button
                     type="button"
                     className="remove"
