@@ -19,7 +19,6 @@ export default function Main() {
     setValue("");
   }
   const submit = () => {
-    console.log(value);
     erase();
   }
   const onChange = (e) => {
