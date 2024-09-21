@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const NewTodo = ({ onNewTodo }) => {
+function NewTodo({ onNewTodo }) {
   const [value, setValue] = useState("");
   const ENTER_KEY = 13;
   const ESCAPE_KEY = 27;
@@ -33,4 +34,9 @@ const NewTodo = ({ onNewTodo }) => {
     />
   )
 }
+
+NewTodo.propTypes = {
+  onNewTodo: PropTypes.func.isRequired,
+}
+
 export default NewTodo;
