@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Container } from "./styles";
 
 function NewTodo({ onNewTodo }) {
   const [value, setValue] = useState("");
@@ -25,13 +26,15 @@ function NewTodo({ onNewTodo }) {
   }
 
   return (
-    <input
+    <Container>
+      <input
       className="new-todo"
       placeholder="o que precisa ser feito?"
       value={value}
       onChange={onChange}
       onKeyDown={verifyKey}
     />
+    </Container>
   )
 }
 
