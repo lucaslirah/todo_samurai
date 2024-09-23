@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { MdDelete } from "react-icons/md";
 
 import { Container } from "./styles";
 import NewTodo from "../../components/NewTodo";
+import TodoList from "../../components/TodoList";
 
 export default function Main() {
 
@@ -38,31 +38,7 @@ export default function Main() {
         </header>
         <section className="main">
           <NewTodo onNewTodo={onNewTodo}/>
-          <ul className="todo-list">
-            {
-              todos.map((todo) => (
-                <li key={todo.id.toString()}>
-                  <span
-                    className={
-                    // `todo ${todo.checked? "checked" : ""}`
-                      ['todo', todo.checked ? 'checked' : ''].join(' ')
-                    }
-                    onClick={() => todoToggleCheck(todo)}
-                    onKeyDown={() => todoToggleCheck(todo)}
-                    role="button"
-                    tabIndex={0}
-                  >{todo.title}</span>
-                  <button
-                    type="button"
-                    className="remove"
-                    onClick={() => todoDelete(todo)}
-                  >
-                    <MdDelete size={28}/>
-                  </button>
-                </li>
-              ))
-            }
-          </ul>
+          <TodoList todos={todos} todoDelete={todoDelete} todoToggleCheck={todoToggleCheck}/>
         </section>
       </section>
     </Container>
